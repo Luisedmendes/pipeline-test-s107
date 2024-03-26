@@ -16,16 +16,13 @@ describe('ShowUserService', (): void => {
 
   beforeEach((): void => {
     fakeUsersRepository = new FakeUsersRepository();
-    showUserService = new ShowUserService(
-      fakeUsersRepository,
-      connection,
-    );
+    showUserService = new ShowUserService(fakeUsersRepository, connection);
   });
 
   it('Should be able to show a user', async (): Promise<void> => {
     const user = await fakeUsersRepository.create({
-      name: 'user',
-      description: 'This is a user',
+      email: 'user@outlook.com.br',
+      password: '12345',
     });
 
     const getUser = await showUserService.execute(user.id);

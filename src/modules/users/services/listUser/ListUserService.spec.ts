@@ -30,12 +30,12 @@ describe('ListUserService', (): void => {
   it('Should be able to list all the users', async (): Promise<void> => {
     const [user01, user02] = await fakeUsersRepository.createMany([
       {
-        name: 'user 1',
-        description: 'This is the first user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
       {
-        name: 'user 2',
-        description: 'This is the second user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
     ]);
 
@@ -47,12 +47,12 @@ describe('ListUserService', (): void => {
   it('Should be able to list all the users using cache', async (): Promise<void> => {
     const [user01, user02] = await fakeUsersRepository.createMany([
       {
-        name: 'user 1',
-        description: 'This is the first user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
       {
-        name: 'user 2',
-        description: 'This is the second user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
     ]);
 
@@ -60,24 +60,22 @@ describe('ListUserService', (): void => {
 
     const userList = await listUserService.execute(1, 2, {});
 
-    expect(userList.data).toEqual(
-      JSON.parse(JSON.stringify([user01, user02])),
-    );
+    expect(userList.data).toEqual(JSON.parse(JSON.stringify([user01, user02])));
   });
 
   it('Should be able to list the users with the specified pagination', async (): Promise<void> => {
     const [user01, user02] = await fakeUsersRepository.createMany([
       {
-        name: 'user 1',
-        description: 'This is the first user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
       {
-        name: 'user 2',
-        description: 'This is the second user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
       {
-        name: 'user 3',
-        description: 'This is the third user',
+        email: 'user@outlook.com.br',
+        password: '12345',
       },
     ]);
 

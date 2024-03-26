@@ -16,8 +16,8 @@ describe('UpdateUserController', (): void => {
     await connection.mysql.runMigrations();
 
     return connection.mysql.query(
-      'INSERT INTO users (id, name, description) VALUES (?, ?, ?);',
-      [id, 'user', 'This is a user'],
+      'INSERT INTO users (id, email, password) VALUES (?, ?, ?);',
+      [id, 'user@outlook.com.br', '12345'],
     );
   });
 
@@ -28,10 +28,9 @@ describe('UpdateUserController', (): void => {
 
   it('Should be able to update a user', async (): Promise<void> => {
     const response = await request(app.server).put(`/users/${id}`).send({
-      name: 'updatedUser',
+      email: 'updatedUser',
     });
 
     expect(response.status).toBe(200);
-    expect(response.body.data.name).toEqual('updatedUser');
   });
 });

@@ -28,21 +28,19 @@ describe('CreateUserService', (): void => {
   });
 
   it('Should be able to create a new user', async (): Promise<void> => {
-    const user = await createUserService.execute({
-      name: 'user',
-      description: 'This is a user',
+    const response = await createUserService.execute({
+      email: 'test@gmail.com',
+      password: '123456',
     });
 
-    expect(user.data).toHaveProperty('id');
+    expect(response.code).toBe(201);
+    expect(response.message_code).toBe('CREATED');
+    expect(response.message).toBe('User successfully created');
   });
 
-  it('Should return AppError', async (): Promise<void> => {
-    jest.spyOn(fakeUsersRepository, 'create').mockImplementationOnce(() => {
-      throw new AppError('FAILED_TO_CREATE', 'Failed to create a user');
-    });
-
-    await expect(createUserService.execute({})).rejects.toBeInstanceOf(
-      AppError,
-    );
+  it('should not be able to create a user with no email', async (): Promise<void> => {
+    await expect(
+      createUserService.execute({ email: '', password: '123456' }),
+    ).rejects.toThrow(new AppError('FAILED_TO_CREATE', 'Email is required'));
   });
 });

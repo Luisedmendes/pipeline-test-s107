@@ -7,6 +7,7 @@ import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { IConnectionDTO } from '@shared/typeorm';
 import { Route, Tags, Post, Body } from 'tsoa';
+import { AppError } from '@shared/errors/AppError';
 
 @Route('/users')
 @injectable()
@@ -31,6 +32,9 @@ export class CreateUserService {
 
     await trx.startTransaction();
     try {
+      if (!userData.email) {
+        throw new AppError('FAILED_TO_CREATE', 'Email is required');
+      }
       const user = await this.usersRepository.create(userData, trx);
 
       await this.cacheProvider.invalidatePrefix(

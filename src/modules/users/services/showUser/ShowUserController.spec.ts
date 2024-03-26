@@ -16,8 +16,8 @@ describe('ShowUserController', (): void => {
     await connection.mysql.runMigrations();
 
     return connection.mysql.query(
-      'INSERT INTO users (id, name, description) VALUES (?, ?, ?);',
-      [id, 'user', 'This is a user'],
+      'INSERT INTO users (id, email, password) VALUES (?, ?, ?);',
+      [id, 'user@outlook.com.br', '12345'],
     );
   });
 

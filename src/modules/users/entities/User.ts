@@ -3,9 +3,9 @@ import { Base } from '@shared/container/modules/entities/Base';
 
 @Entity('users')
 export class User extends Base {
-  @Column({ type: 'varchar', unique: false })
-  public name: string;
+  @Column({ type: 'varchar', nullable: true })
+  public email: string;
 
   @Column({ type: 'varchar', nullable: true })
-  public description: string;
+  public password: string;
 }

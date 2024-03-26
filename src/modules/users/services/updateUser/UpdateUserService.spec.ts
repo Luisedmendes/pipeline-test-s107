@@ -29,16 +29,16 @@ describe('UpdateUserService', (): void => {
 
   it('Should be able to update a user', async (): Promise<void> => {
     const user = await fakeUsersRepository.create({
-      name: 'user',
-      description: 'This is a user',
+      email: 'user@outlook.com.br',
+      password: '12345',
     });
 
     const updatedUser = await updateUserService.execute(
-      { ...user, name: 'updatedUser' },
+      { ...user, email: 'updatedUser@outlook.com.br' },
       user.id,
     );
 
-    expect(updatedUser.data.name).toEqual('updatedUser');
+    expect(updatedUser.data.email).toEqual('updatedUser@outlook.com.br');
   });
 
   it('Should not be able to update a user with a non-existing id', async (): Promise<void> => {

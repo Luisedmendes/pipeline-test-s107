@@ -29,8 +29,8 @@ describe('DeleteUserService', (): void => {
 
   it('Should be able to delete a user', async (): Promise<void> => {
     const user = await fakeUsersRepository.create({
-      name: 'user',
-      description: 'This is a user',
+      email: 'user@outlook',
+      password: '12345',
     });
 
     await deleteUserService.execute(user.id);
