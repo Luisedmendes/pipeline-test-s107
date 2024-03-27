@@ -10,13 +10,14 @@ env:
     REDIS_HOST: ${{ secrets.REDIS_HOST }}
     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
     MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+    MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
     MYSQL_USER: ${{ secrets.MYSQL_USER }}
     NODE_ENV: ${{ secrets.NODE_ENV }}
     PORT: ${{ secrets.PORT }}
     REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     REDIS_PORT: ${{ secrets.REDIS_PORT }}
     REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
-    
+
 
 
 jobs:
@@ -27,7 +28,7 @@ jobs:
     - name: Create .env file
       run: |
         echo "PORT={{ secrets.PORT }}" > .env
-        echo "MYSQL_HOST=database" >> .env
+        echo "MYSQL_HOST=${{secrets.MYSQL_HOST}}" >> .env
         echo "API_URL=${API_URL}" >> .env
         echo "EMAIL=${EMAIL}" >> .env
         echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> .env
