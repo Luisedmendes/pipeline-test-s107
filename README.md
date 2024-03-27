@@ -49,8 +49,12 @@ Rodar testes com comando yarn test
 Aqui estão as rotas disponíveis na API:
 
 POST /users: Cria um novo usuário.
+
 GET /users: Lista todos os usuários.
+
 GET /users/:id: Mostra os detalhes de um usuário específico.
+
 PUT /users/:id: Atualiza os detalhes de um usuário específico.
+
 DELETE /users/:id: Deleta um usuário específico.
 
