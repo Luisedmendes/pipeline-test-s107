@@ -76,6 +76,11 @@ jobs:
       with:
         name: dist
         path: dist/
+    - name: Archive test reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: coverage/    
 
   # notify:
   #   needs: build
