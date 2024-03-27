@@ -13,7 +13,7 @@ env:
     REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
     PORT: ${{ secrets.PORT }}
     REDIS_PORT: ${{ secrets.REDIS_PORT }}
-    MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+
 
 jobs:
   test:
