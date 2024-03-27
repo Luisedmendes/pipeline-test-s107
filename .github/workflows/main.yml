@@ -2,20 +2,20 @@ name: CI/CD Pipeline
 
 on: [push]
 
-# env:
-#     API_URL: ${{ secrets.API_URL }}
-#     EMAIL: ${{ secrets.EMAIL }}
-#     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-#     MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-#     REDIS_HOST: ${{ secrets.REDIS_HOST }}
-#     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-#     MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
-#     MYSQL_USER: ${{ secrets.MYSQL_USER }}
-#     NODE_ENV: ${{ secrets.NODE_ENV }}
-#     PORT: ${{ secrets.PORT }}
-#     REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-#     REDIS_PORT: ${{ secrets.REDIS_PORT }}
-#     REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
+env:
+    API_URL: ${{ secrets.API_URL }}
+    EMAIL: ${{ secrets.EMAIL }}
+    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+    REDIS_HOST: ${{ secrets.REDIS_HOST }}
+    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+    MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+    MYSQL_USER: ${{ secrets.MYSQL_USER }}
+    NODE_ENV: ${{ secrets.NODE_ENV }}
+    PORT: ${{ secrets.PORT }}
+    REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+    REDIS_PORT: ${{ secrets.REDIS_PORT }}
+    REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
 
 
 jobs:
