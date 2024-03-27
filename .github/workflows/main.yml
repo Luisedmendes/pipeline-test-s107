@@ -54,8 +54,8 @@ jobs:
       run: docker-compose up -d  
       
     - name: Run api
-      run: 
-        yarn dev 
+      run: |
+        yarn dev &
 
     - name: Run tests
       run: |  
