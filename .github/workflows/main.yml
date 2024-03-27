@@ -91,4 +91,4 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Send email
-      run: node src\modules\users\services\sendEmail.ts
+      run: node src/modules/users/services/sendEmail.ts
