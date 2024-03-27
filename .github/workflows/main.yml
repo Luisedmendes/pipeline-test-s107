@@ -1,23 +1,6 @@
 name: CI/CD Pipeline
 
 on: [push]
-
-env:
-    API_URL: ${{ secrets.API_URL }}
-    EMAIL: ${{ secrets.EMAIL }}
-    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-    REDIS_HOST: ${{ secrets.REDIS_HOST }}
-    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-    MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
-    MYSQL_USER: ${{ secrets.MYSQL_USER }}
-    NODE_ENV: ${{ secrets.NODE_ENV }}
-    PORT: ${{ secrets.PORT }}
-    REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-    REDIS_PORT: ${{ secrets.REDIS_PORT }}
-    REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
-
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -43,11 +26,7 @@ jobs:
       run: npm install
     - name: Run docker images
       run: docker-compose up -d  
-
-    - name: Configure MySQL authentication
-      run: |
-        echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ secrets.MYSQL_ROOT_PASSWORD }}'; FLUSH PRIVILEGES;" > init.sql
-        docker exec -i database mysql -uroot -p${{ secrets.MYSQL_ROOT_PASSWORD }} < init.sql  
+      
     - name: Run api and tests
       run: | 
         yarn dev & 
