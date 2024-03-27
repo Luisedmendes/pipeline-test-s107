@@ -7,7 +7,7 @@ services:
     container_name: mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - '3306:3306'
+      - '3307:3306'
     env_file:
       - .env
     networks:
@@ -23,13 +23,7 @@ services:
       - .env
     networks:
       - rs-network
-
-  wait:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - database
-      - redis
-    command: database:3306 redis:6379
+    
 
 networks:
   rs-network:

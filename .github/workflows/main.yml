@@ -6,7 +6,7 @@ env:
     API_URL: ${{ secrets.API_URL }}
     EMAIL: ${{ secrets.EMAIL }}
     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-    # MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
     REDIS_HOST: ${{ secrets.REDIS_HOST }}
     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
     MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
@@ -25,16 +25,19 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create .env file
       run: |
-        echo PORT=${{ secrets.PORT }} >> .env
-        echo API_URL=http://localhost:${{ secrets.PORT }} >> .env
-        echo NODE_ENV=test >> .env
-        echo MYSQL_PORT=${{ secrets.MYSQL_PORT }} >> .env
-        echo MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .env
-        echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
-        echo REDIS_HOST=${{ secrets.REDIS_HOST }} >> .env
-        echo REDIS_PORT=${{ secrets.REDIS_PORT }} >> .env
-        echo REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} >> .env
-        echo REDIS_PREFIX=${{ secrets.REDIS_PREFIX }} >> .env
+        echo "API_URL=${API_URL}" >> .env
+        echo "EMAIL=${EMAIL}" >> .env
+        echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> .env
+        echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> .env
+        echo "REDIS_HOST=${REDIS_HOST}" >> .env
+        echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> .env
+        echo "MYSQL_PORT=${MYSQL_PORT}" >> .env
+        echo "MYSQL_USER=${MYSQL_USER}" >> .env
+        echo "NODE_ENV=${NODE_ENV}" >> .env
+        echo "PORT=${PORT}" >> .env
+        echo "REDIS_PASSWORD=${REDIS_PASSWORD}" >> .env
+        echo "REDIS_PORT=${REDIS_PORT}" >> .env
+        echo "REDIS_PREFIX=${REDIS_PREFIX}" >> .env
   
     - name: Install dependencies
       run: npm install
