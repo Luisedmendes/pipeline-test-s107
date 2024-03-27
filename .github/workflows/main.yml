@@ -3,7 +3,18 @@ name: CI/CD Pipeline
 on: [push]
 
 env:
-  EMAIL: ${{ secrets.EMAIL }}
+    EMAIL: ${{ secrets.EMAIL }}
+    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+    MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+    MYSQL_USER: ${{ secrets.MYSQL_USER }}
+    REDIS_HOST: ${{ secrets.REDIS_HOST }}
+    REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+    REDIS_PORT: ${{ secrets.REDIS_PORT }}
+    REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
+    PORT: ${{ secrets.PORT }}
+    REDIS_PORT: ${{ secrets.REDIS_PORT }}
+    MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
 
 jobs:
   test:
@@ -16,6 +27,8 @@ jobs:
         node-version: '18.18'
     - name: Install dependencies
       run: npm install
+    - name: Run docker images
+      run: docker-compose up -d  
     - name: Run api
       run: yarn dev
     - name: Run tests
