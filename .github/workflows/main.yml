@@ -53,11 +53,21 @@ jobs:
     - name: Run docker images
       run: docker-compose up -d  
       
-    - name: Run api and tests
-      run: | 
-        yarn dev & 
+    - name: Run api
+      run: 
+        yarn dev 
+
+    - name: Run tests
+      run: |  
         sleep 10
-        yarn test  
+        yarn test      
+
+        
+    
+    
+    
+    
+    
     
 
 
