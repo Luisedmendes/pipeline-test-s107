@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+on: [push]
+
+env:
+  EMAIL: ${{ secrets.EMAIL }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.18'
+    - name: Install dependencies
+      run: npm install
+    - name: Run api
+      run: yarn dev
+    - name: Run tests
+      run: yarn test
+      
+
+  # build:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Build
+  #     run: npm run build
+  #   - name: Archive production artifacts
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: dist
+  #       path: dist/
+
+  # notify:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
+  #   - name: Send email
+  #     run: node send_email.js
