@@ -88,6 +88,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Send email
