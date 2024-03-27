@@ -43,9 +43,9 @@ jobs:
       run: docker-compose up -d  
     - name: Run system and tests
       run: | 
-      yarn dev & 
-      sleep 10
-      yarn test  
+        yarn dev & 
+        sleep 10
+        yarn test  
 
   # build:
   #   needs: test
