@@ -41,11 +41,25 @@ jobs:
       run: npm install
     - name: Run docker images
       run: docker-compose up -d  
-    - name: Run system and tests
+    - name: Wait for MySQL
+      run: |
+        while ! nc -z database ${{ secrets.MYSQL_PORT }}; do
+          echo "Waiting for MySQL..."
+          sleep 1
+        done
+    - name: Wait for Redis
+      run: |
+        while ! nc -z redis ${{ secrets.REDIS_PORT }}; do
+          echo "Waiting for Redis..."
+          sleep 1
+        done
+    - name: Run api and tests
       run: | 
         yarn dev & 
         sleep 10
         yarn test  
+    
+
 
   # build:
   #   needs: test
