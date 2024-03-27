@@ -5,6 +5,8 @@ on: [push]
 env:
     API_URL: ${{ secrets.API_URL }}
     EMAIL: ${{ secrets.EMAIL }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
     MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
     REDIS_HOST: ${{ secrets.REDIS_HOST }}
@@ -82,11 +84,11 @@ jobs:
         name: test-reports
         path: coverage/lcov-report/index.html   
 
-  # notify:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
-  #   - name: Send email
-  #     run: node send_email.js
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Send email
+      run: node src\modules\users\services\sendEmail.ts

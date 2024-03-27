@@ -37,6 +37,7 @@ export class CreateUserService {
       }
       const user = await this.usersRepository.create(userData, trx);
 
+
       await this.cacheProvider.invalidatePrefix(
         `${this.connection.client}:users`,
       );
