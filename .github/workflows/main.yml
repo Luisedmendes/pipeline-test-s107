@@ -38,11 +38,11 @@ jobs:
         echo "REDIS_PASSWORD=${REDIS_PASSWORD}" >> .env
         echo "REDIS_PORT=${REDIS_PORT}" >> .env
         echo "REDIS_PREFIX=${REDIS_PREFIX}" >> .env
-        
+
     - name: Configure MySQL authentication
-        run: |
-          echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ secrets.MYSQL_ROOT_PASSWORD }}'; FLUSH PRIVILEGES;" > init.sql
-          docker exec -i database mysql -uroot -p${{ secrets.MYSQL_ROOT_PASSWORD }} < init.sql
+      run: |
+        echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ secrets.MYSQL_ROOT_PASSWORD }}'; FLUSH PRIVILEGES;" > init.sql
+        docker exec -i database mysql -uroot -p${{ secrets.MYSQL_ROOT_PASSWORD }} < init.sql
 
     - name: Install dependencies
       run: npm install
