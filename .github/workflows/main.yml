@@ -25,6 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Adicionar IP do GitHub ao arquivo de hosts
+      run: echo "$IP_DO_GITHUB github.com" | sudo tee -a /etc/hosts
+      env:
+        IP_DO_GITHUB: 20.201.28.151
+
     - name: Create .env file
       run: |
         echo "PORT={{ secrets.PORT }}" > .env
