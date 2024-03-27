@@ -3,16 +3,19 @@ name: CI/CD Pipeline
 on: [push]
 
 env:
+    API_URL: ${{ secrets.API_URL }}
     EMAIL: ${{ secrets.EMAIL }}
     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+    MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+    REDIS_HOST: ${{ secrets.REDIS_HOST }}
     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
     MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
     MYSQL_USER: ${{ secrets.MYSQL_USER }}
-    REDIS_HOST: ${{ secrets.REDIS_HOST }}
-    REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-    REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
+    NODE_ENV: ${{ secrets.NODE_ENV }}
     PORT: ${{ secrets.PORT }}
+    REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     REDIS_PORT: ${{ secrets.REDIS_PORT }}
+    REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
 
 
 jobs:
@@ -27,17 +30,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Run docker images
-      run: |
-        REDIS_HOST=${{ secrets.REDIS_HOST }} \
-        REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} \
-        REDIS_PREFIX=${{ secrets.REDIS_PREFIX }} \
-        REDIS_PORT=${{ secrets.REDIS_PORT }} \
-        MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
-        MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
-        MYSQL_PORT=${{ secrets.MYSQL_PORT }} \
-        MYSQL_USER=${{ secrets.MYSQL_USER }} \
-        docker-compose up -d
-
+      run: docker-compose up -d  
     - name: Run api
       run: yarn dev
     - name: Run tests
